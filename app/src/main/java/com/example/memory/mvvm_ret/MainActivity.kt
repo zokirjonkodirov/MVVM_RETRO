@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.memory.mvvm_ret.adapter.PostAdapter
+import com.example.memory.mvvm_ret.model.Post
 import com.example.memory.mvvm_ret.repository.MainRepository
 import com.example.memory.mvvm_ret.viewmodel.MainViewModel
 import com.example.memory.mvvm_ret.viewmodel.MainViewModelFactory
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
-        viewModel.getCustomPosts(2, "id", "dsc")
+        viewModel.getCustomPosts(10, "id", "dsc")
         viewModel.myCustomPosts.observe(this, Observer { response ->
             if (response.isSuccessful) {
                 myAdapter.setData(response.body()!!)
